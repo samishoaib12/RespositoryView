@@ -21,8 +21,7 @@ struct ContentView: View {
                     .listRowSeparator(.hidden)
                 RepositoryCardView()
                     .listRowSeparator(.hidden)
-                RepositoryCardView()
-                    .listRowSeparator(.hidden)
+                
                 
             }
             .listStyle(.plain)
