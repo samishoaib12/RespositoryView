@@ -7,55 +7,57 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct RepositoryView: View {
+    
+   @StateObject var model: RepositoryViewModel
     var body: some View {
         VStack {
             List {
-                RepositoryCardView()
-                    .listRowSeparator(.hidden)
-                RepositoryCardView()
-                    .listRowSeparator(.hidden)
-                RepositoryCardView()
-                    .listRowSeparator(.hidden)
-                RepositoryCardView()
-                    .listRowSeparator(.hidden)
-                RepositoryCardView()
-                    .listRowSeparator(.hidden)
+                ForEach(self.model.respositoryListModel, id: \.self) { model in
                 
+                    RepositoryCardView(model: model)
+                        .listRowSeparator(.hidden)
+                }
                 
             }
             .listStyle(.plain)
             
         }
         .padding()
+        .onAppear {
+            self.model.fetchRespositoryList()
+        }
     }
+    
 }
 
 #Preview {
-    ContentView()
+    RepositoryView(model: RepositoryViewModel())
 }
 
 struct RepositoryCardView: View {
+    var model: RepositoryViewModel.RespositoryModel
+    
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
                 Text("Repository Name:")
-                Text("My Repo")
+                Text(model.repoName)
             }
             
             HStack {
                 Text("Total Stars:")
-                Text("600")
+                Text("\(model.totalStars)")
             }
             
             HStack {
                 Text("Language:")
-                Text("Swift")
+                Text(model.language)
             }
             
             HStack {
                 Text("Description:")
-                Text("My description")
+                Text(model.description)
             }
             
         }

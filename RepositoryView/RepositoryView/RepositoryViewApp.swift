@@ -11,7 +11,7 @@ import SwiftUI
 struct RepositoryViewApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RepositoryView(model: RepositoryViewModel())
         }
     }
 }
